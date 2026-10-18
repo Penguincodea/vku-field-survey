@@ -145,7 +145,7 @@ def create_report():
         ("Mã số sinh viên / Lớp:", "21IT... / Lớp Kỹ thuật phần mềm VKU"),
         ("Học phần / Trọng số:", "Phát triển ứng dụng di động đa nền tảng (Mini-Project 1: 10%)"),
         ("Live Demo URL:", "https://vku-field-survey.hungabc2206.workers.dev"),
-        ("GitHub Repository:", "https://github.com/hungbbdzz/vku-field-survey")
+        ("GitHub Repository:", "https://github.com/Penguincodea/vku-field-survey")
     ]
     
     for i, (k, v) in enumerate(info_data):

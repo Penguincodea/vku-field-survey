@@ -10,7 +10,7 @@
 * **Cơ sở đào tạo:** Trường Đại học Công nghệ Thông tin & Truyền thông Việt - Hàn (VKU) – Đại học Đà Nẵng
 * **Khoa:** Khoa Khoa học Máy tính / Kỹ thuật Máy tính & Điện tử
 * **Học phần:** Phát triển Ứng dụng Đa nền tảng (Cross-Platform Mobile & Web Development)
-* **Mã nguồn GitHub:** [https://github.com/hungbbdzz/vku-field-survey](https://github.com/hungbbdzz/vku-field-survey)
+* **Mã nguồn GitHub:** [https://github.com/Penguincodea/vku-field-survey](https://github.com/Penguincodea/vku-field-survey)
 * **Live Demo URL:** [https://vku-field-survey.hungabc2206.workers.dev/](https://vku-field-survey.hungabc2206.workers.dev/)
 
 ---
