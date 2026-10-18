@@ -99,7 +99,8 @@ async function setupNetworkListener(): Promise<void> {
       try {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 2000);
-        const res = await fetch('https://vku-field-survey.hungabc2206.workers.dev/api/submissions', {
+        const checkUrl = import.meta.env.VITE_API_URL || '/api/submissions';
+        const res = await fetch(checkUrl, {
           method: 'GET',
           mode: 'cors',
           cache: 'no-store',
@@ -216,7 +217,7 @@ function renderHeader(): string {
       <button id="nav-history" class="nav-btn ${currentPage === 'history' ? 'active' : ''}">📋 Lịch sử</button>
     </nav>
     <div class="header-status">
-      <a href="/vku-field-survey.apk" download="vku-field-survey.apk" class="apk-download-btn" title="Tải ứng dụng Android APK">
+      <a href="https://github.com/Penguincodea/vku-field-survey/releases" target="_blank" rel="noopener noreferrer" class="apk-download-btn" title="Tải ứng dụng Android APK">
         📥 Tải APK
       </a>
       <span id="network-badge" class="network-badge ${isOnlineState ? 'online' : 'offline'}">

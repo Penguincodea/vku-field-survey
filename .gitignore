@@ -30,4 +30,4 @@ dist-ssr
 
 # Android local machine files & duplicate root APK
 android/local.properties
-/vku-field-survey.apk
+*.apk
