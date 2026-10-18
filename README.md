@@ -10,7 +10,7 @@
 * **Cơ sở đào tạo:** Trường Đại học Công nghệ Thông tin & Truyền thông Việt - Hàn (VKU) – Đại học Đà Nẵng
 * **Khoa:** Khoa Khoa học Máy tính / Kỹ thuật Máy tính & Điện tử
 * **Học phần:** Phát triển Ứng dụng Đa nền tảng (Cross-Platform Mobile & Web Development)
-* **Sinh viên thực hiện:** Vi Trung Việt — **Mã sinh viên / Lớp:** 23ITB (Email: `vietvt.23itb@vku.udn.vn`)
+* **Sinh viên thực hiện:** Vi Trung Việt — **Mã sinh viên:** 23IT.B245 — **Lớp:** 23ITB (Email: `vietvt.23itb@vku.udn.vn`)
 * **Mã nguồn GitHub:** [https://github.com/Penguincodea/vku-field-survey](https://github.com/Penguincodea/vku-field-survey)
 * **Live Demo URL:** [https://vku-field-survey.vietvt-23itb.workers.dev/](https://vku-field-survey.vietvt-23itb.workers.dev/)
 

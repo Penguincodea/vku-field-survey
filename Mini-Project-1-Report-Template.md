@@ -1,14 +1,14 @@
 # MINI-PROJECT SHORT TECHNICAL REPORT
 **Course:** Cross-Platform Mobile App Development (Cross-Platform Mobile & Web Development — VKU)  
 **Mini-Project Title:** Mini-Project 1: VKU Field Survey — Hệ thống Khảo sát & Kiểm tra Cơ sở Vật chất Khuôn viên VKU (Offline-First PWA & Capacitor Mobile Bridge)  
-**Student Name:** Phan Trung Việt  
+**Student Name:** Vi Trung Việt  
 **Submission Date:** 19/10/2026  
 
 ---
 
 ## 1. GENERAL INFORMATION & DELIVERABLE LINKS
 * **Team Members / Student:**
-  1. **Phan Trung Việt** — Student ID: `23ITB` (Email: `vietvt.23itb@vku.udn.vn`) — Role: *Lead Architect / Full-Stack Cross-Platform Mobile & UI Engineering* — Contribution: **100%**
+  1. **Vi Trung Việt** — Student ID: `23IT.B245` (Class: `23ITB`, Email: `vietvt.23itb@vku.udn.vn`) — Role: *Lead Architect / Full-Stack Cross-Platform Mobile & UI Engineering* — Contribution: **100%**
 * **🔗 Live Demo URL:** [https://vku-field-survey.vietvt-23itb.workers.dev/](https://vku-field-survey.vietvt-23itb.workers.dev/)
 * **💻 GitHub Repository:** [https://github.com/Penguincodea/vku-field-survey](https://github.com/Penguincodea/vku-field-survey)
 * **📱 Android APK Download:** [GitHub Releases Latest APK](https://github.com/Penguincodea/vku-field-survey/releases)

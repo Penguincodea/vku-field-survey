@@ -37,54 +37,72 @@ def set_table_borders(table, color="CCCCCC", sz="4", val="single"):
     ''')
     tblPr.append(borders)
 
-def add_image_placeholder(doc, title, desc):
-    tbl = doc.add_table(rows=1, cols=1)
-    tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
-    cell = tbl.cell(0, 0)
-    set_cell_background(cell, "F8FAFC")
-    set_cell_margins(cell, top=200, bottom=200, left=240, right=240)
-    
-    tcPr = cell._tc.get_or_add_tcPr()
-    tcBorders = parse_xml(f'''
-        <w:tcBorders {nsdecls("w")}>
-            <w:top w:val="dashed" w:sz="8" w:space="0" w:color="0284C7"/>
-            <w:bottom w:val="dashed" w:sz="8" w:space="0" w:color="0284C7"/>
-            <w:left w:val="dashed" w:sz="8" w:space="0" w:color="0284C7"/>
-            <w:right w:val="dashed" w:sz="8" w:space="0" w:color="0284C7"/>
-        </w:tcBorders>
-    ''')
-    tcPr.append(tcBorders)
-    
-    p = cell.paragraphs[0]
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p.paragraph_format.space_before = Pt(8)
-    p.paragraph_format.space_after = Pt(4)
-    run = p.add_run(f"🖼️ [ CHÈN ẢNH TẠI ĐÂY: {title} ]")
-    run.font.name = "Times New Roman"
-    run.font.size = Pt(11)
-    run.font.bold = True
-    run.font.color.rgb = RGBColor(2, 132, 199)
-    
-    p2 = cell.add_paragraph()
-    p2.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p2.paragraph_format.space_before = Pt(0)
-    p2.paragraph_format.space_after = Pt(8)
-    run2 = p2.add_run(f"Mô tả: {desc}")
-    run2.font.name = "Times New Roman"
-    run2.font.size = Pt(9.5)
-    run2.font.italic = True
-    run2.font.color.rgb = RGBColor(100, 116, 139)
-    
-    p_cap = doc.add_paragraph()
-    p_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p_cap.paragraph_format.space_before = Pt(4)
-    p_cap.paragraph_format.space_after = Pt(12)
-    run_cap = p_cap.add_run(f"Hình: {title}")
-    run_cap.font.name = "Times New Roman"
-    run_cap.font.size = Pt(10)
-    run_cap.font.italic = True
-    run_cap.font.bold = True
-    run_cap.font.color.rgb = RGBColor(51, 65, 85)
+def add_image_item(doc, title, desc, image_path=None):
+    if image_path and os.path.exists(image_path):
+        p_img = doc.add_paragraph()
+        p_img.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_img.paragraph_format.space_before = Pt(8)
+        p_img.paragraph_format.space_after = Pt(4)
+        run_img = p_img.add_run()
+        run_img.add_picture(image_path, width=Inches(5.6))
+        
+        p_cap = doc.add_paragraph()
+        p_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_cap.paragraph_format.space_before = Pt(2)
+        p_cap.paragraph_format.space_after = Pt(12)
+        run_cap = p_cap.add_run(f"Hình: {title} — {desc}")
+        run_cap.font.name = "Times New Roman"
+        run_cap.font.size = Pt(9.5)
+        run_cap.font.italic = True
+        run_cap.font.color.rgb = RGBColor(71, 85, 105)
+    else:
+        tbl = doc.add_table(rows=1, cols=1)
+        tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
+        cell = tbl.cell(0, 0)
+        set_cell_background(cell, "F8FAFC")
+        set_cell_margins(cell, top=200, bottom=200, left=240, right=240)
+        
+        tcPr = cell._tc.get_or_add_tcPr()
+        tcBorders = parse_xml(f'''
+            <w:tcBorders {nsdecls("w")}>
+                <w:top w:val="dashed" w:sz="8" w:space="0" w:color="0284C7"/>
+                <w:bottom w:val="dashed" w:sz="8" w:space="0" w:color="0284C7"/>
+                <w:left w:val="dashed" w:sz="8" w:space="0" w:color="0284C7"/>
+                <w:right w:val="dashed" w:sz="8" w:space="0" w:color="0284C7"/>
+            </w:tcBorders>
+        ''')
+        tcPr.append(tcBorders)
+        
+        p = cell.paragraphs[0]
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.paragraph_format.space_before = Pt(8)
+        p.paragraph_format.space_after = Pt(4)
+        run = p.add_run(f"🖼️ [ {title} ]")
+        run.font.name = "Times New Roman"
+        run.font.size = Pt(11)
+        run.font.bold = True
+        run.font.color.rgb = RGBColor(2, 132, 199)
+        
+        p2 = cell.add_paragraph()
+        p2.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p2.paragraph_format.space_before = Pt(0)
+        p2.paragraph_format.space_after = Pt(8)
+        run2 = p2.add_run(f"Mô tả: {desc}")
+        run2.font.name = "Times New Roman"
+        run2.font.size = Pt(9.5)
+        run2.font.italic = True
+        run2.font.color.rgb = RGBColor(100, 116, 139)
+        
+        p_cap = doc.add_paragraph()
+        p_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_cap.paragraph_format.space_before = Pt(4)
+        p_cap.paragraph_format.space_after = Pt(12)
+        run_cap = p_cap.add_run(f"Hình: {title}")
+        run_cap.font.name = "Times New Roman"
+        run_cap.font.size = Pt(10)
+        run_cap.font.italic = True
+        run_cap.font.bold = True
+        run_cap.font.color.rgb = RGBColor(51, 65, 85)
 
 def create_report():
     doc = Document()
@@ -141,8 +159,8 @@ def create_report():
     set_table_borders(info_tbl, color="CBD5E1", sz="6")
     
     info_data = [
-        ("Họ và tên sinh viên:", "Phan Trung Việt (Sinh viên thực hiện)"),
-        ("Mã số sinh viên / Lớp:", "23ITB / Lớp Kỹ thuật phần mềm VKU"),
+        ("Họ và tên sinh viên:", "Vi Trung Việt (Sinh viên thực hiện)"),
+        ("Mã số sinh viên / Lớp:", "23IT.B245 / Lớp 23ITB (Kỹ thuật phần mềm VKU)"),
         ("Học phần / Trọng số:", "Phát triển ứng dụng di động đa nền tảng (Mini-Project 1: 10%)"),
         ("Live Demo URL:", "https://vku-field-survey.vietvt-23itb.workers.dev"),
         ("GitHub Repository:", "https://github.com/Penguincodea/vku-field-survey")
@@ -378,45 +396,51 @@ def create_report():
     p_test_intro = doc.add_paragraph()
     p_test_intro.paragraph_format.space_after = Pt(8)
     r_ti = p_test_intro.add_run(
-        "Dưới đây là các vị trí khung chờ để dán ảnh chụp màn hình kiểm thử thực tế trên thiết bị di động / máy tính. "
-        "Sinh viên chỉ cần dán ảnh chụp thật vào từng khung tương ứng trước khi xuất sang file PDF nộp bài:"
+        "Dưới đây là các hình ảnh chụp thực tế quá trình vận hành của ứng dụng VKU Field Survey trên môi trường Web PWA và Mobile Android:"
     )
     r_ti.font.name = "Times New Roman"
     r_ti.font.size = Pt(10.5)
 
+    screenshots_dir = os.path.join(os.getcwd(), "docs", "screenshots")
+
     # Screenshot 1
-    add_image_placeholder(
+    add_image_item(
         doc,
-        title="Giao diện Form Khảo Sát & Phân Khu VKU (Desktop / Mobile)",
-        desc="Chụp màn hình Bước 1: hiển thị 10 khối cơ sở vật chất VKU (Khu V, Khu K...), chip chọn nhanh Tầng (T.1-T.5) và gợi ý tên phòng chuẩn (V.A502, K.A207...)."
+        title="Form Khảo Sát Bước 1 — 10 Phân Khu Cơ Sở Vật Chất & Tọa Độ GPS VKU",
+        desc="Giao diện Cyber-Glass Inspector Cockpit hiển thị 10 phân khu VKU, chip chọn nhanh tầng (T.1-T.5) và phòng học chuẩn thời khóa biểu.",
+        image_path=os.path.join(screenshots_dir, "step1_main_form.png")
     )
 
     # Screenshot 2
-    add_image_placeholder(
+    add_image_item(
         doc,
-        title="Kiểm thử Ngắt kết nối mạng (Offline Test) & Phục hồi Bản nháp",
-        desc="Bật chế độ Offline trên trình duyệt (Network Tab -> Offline) hoặc ngắt WiFi: Thanh trạng thái chuyển sang màu đỏ 'Mất kết nối mạng', form vẫn nhập bình thường và dữ liệu bản nháp được lưu an toàn trong IndexedDB."
+        title="Form Khảo Sát Bước 2 — Danh Mục Trang Thiết Bị & Tag Khiếm Khuyết Nhanh",
+        desc="Lựa chọn thiết bị khảo sát kèm danh mục tag lỗi phổ biến 1 chạm có gắn LED màu trạng thái trực quan.",
+        image_path=os.path.join(screenshots_dir, "step2_devices_defects.png")
     )
 
     # Screenshot 3
-    add_image_placeholder(
+    add_image_item(
         doc,
-        title="Chụp ảnh Hiện trường Khiếm khuyết & Tự động Nén dung lượng",
-        desc="Chụp màn hình Bước 2 & 3: Ảnh chụp hiện trường thiết bị hỏng (máy chiếu, điều hòa, công tắc điện) được nén gọn kèm thông tin dung lượng (< 250KB) và gắn tọa độ GPS."
+        title="Form Khảo Sát Bước 3 — Đánh Giá Sao, Mức Độ Ưu Tiên & Camera Nén Ảnh",
+        desc="Hệ thống chấm điểm 1-5 sao phát quang, phân loại ưu tiên (Khẩn cấp/Cần xử lý/Bình thường) và khung camera nén Canvas < 250KB.",
+        image_path=os.path.join(screenshots_dir, "step3_camera_priority.png")
     )
 
     # Screenshot 4
-    add_image_placeholder(
+    add_image_item(
         doc,
-        title="Tự động Đồng bộ Ngoại tuyến lên Cloudflare (Online Sync)",
-        desc="Kết nối lại Internet: Hàng đợi hiển thị thông báo 'Đồng bộ ngầm thành công', phiếu khảo sát được gửi thẳng lên Cloudflare Pages Functions và cấp Transaction ID."
+        title="Bảng Điều Khiển Lịch Sử Khảo Sát (Audit Dashboard) & Thống Kê KPI",
+        desc="Ribbon 4 chỉ số KPI thời gian thực, bộ lọc đa năng 10 phân khu, trạng thái PENDING_SYNC/SYNCED và các nút xuất CSV/PDF.",
+        image_path=os.path.join(screenshots_dir, "history_audit_dashboard.png")
     )
 
     # Screenshot 5
-    add_image_placeholder(
+    add_image_item(
         doc,
-        title="Trang Quản lý Lịch sử, Lọc đa tiêu chí & Xuất Báo cáo CSV/PDF",
-        desc="Chụp màn hình tab 'Lịch sử': Hiển thị Ribbon thống kê tỷ lệ đồng bộ, bộ lọc theo 10 phân khu, các nút chức năng Sửa/Xóa/Gửi lại và nút Xuất Excel (CSV)."
+        title="Giao Diện Mobile Responsive Trên Thiết Bị Di Động (Android PWA / APK)",
+        desc="Tối ưu hóa bố cục buồng lái công nghệ cao trên màn hình điện thoại di động, thanh điều hướng nổi và thao tác 1 tay thuận tiện.",
+        image_path=os.path.join(screenshots_dir, "mobile_responsive_view.png")
     )
 
     # ── MỤC 5: KẾT LUẬN & ĐÁNH GIÁ ────────────────────────────
@@ -445,9 +469,17 @@ def create_report():
         r_c.font.color.rgb = RGBColor(51, 65, 85)
 
     # Output file
-    output_path = os.path.join(os.getcwd(), "Bao_Cao_Mini_Project_1_VKU_Field_Survey.docx")
-    doc.save(output_path)
-    print("REPORT_GENERATED_SUCCESSFULLY")
+    output_docx = os.path.join(os.getcwd(), "Bao_Cao_Mini_Project_1_VKU_Field_Survey.docx")
+    output_pdf = os.path.join(os.getcwd(), "Bao_Cao_Mini_Project_1_VKU_Field_Survey.pdf")
+    doc.save(output_docx)
+    print("DOCX_GENERATED_SUCCESSFULLY")
+
+    try:
+        from docx2pdf import convert
+        convert(output_docx, output_pdf)
+        print("PDF_GENERATED_SUCCESSFULLY")
+    except Exception as e:
+        print("PDF_CONVERT_ERROR:", e)
 
 if __name__ == "__main__":
     create_report()
