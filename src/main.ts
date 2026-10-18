@@ -247,6 +247,8 @@ window.addEventListener('sync-completed', (e: Event) => {
 });
 
 // ── Splash Screen Management ──────────────────────────────────
+let splashDismissed = false;
+
 function updateSplashStatus(message: string): void {
   const statusEl = document.getElementById('splash-status');
   if (statusEl) {
@@ -255,8 +257,10 @@ function updateSplashStatus(message: string): void {
 }
 
 function dismissSplashScreen(): void {
+  if (splashDismissed) return;
   const splash = document.getElementById('app-splash-screen');
   if (!splash) return;
+  splashDismissed = true;
 
   splash.classList.add('splash-hidden');
   setTimeout(() => {
@@ -268,44 +272,66 @@ function dismissSplashScreen(): void {
 async function bootstrap(): Promise<void> {
   const startTime = Date.now();
 
-  if (Capacitor.isNativePlatform()) {
-    document.body.classList.add('is-native');
-    try {
-      const status = await Network.getStatus();
-      isOnlineState = status.connected;
-    } catch {
+  // Defensive fallback: guarantee that splash screen disappears no matter what happens within 1800ms
+  const fallbackTimer = setTimeout(() => {
+    console.warn('[Bootstrap] Safety timer triggered: dismissing splash screen');
+    dismissSplashScreen();
+  }, 1800);
+
+  try {
+    if (Capacitor.isNativePlatform()) {
+      document.body.classList.add('is-native');
+      try {
+        const status = await Network.getStatus();
+        isOnlineState = status.connected;
+      } catch {
+        isOnlineState = navigator.onLine;
+      }
+    } else {
       isOnlineState = navigator.onLine;
     }
-  } else {
-    isOnlineState = navigator.onLine;
+
+    // Render initial page
+    showPage('form');
+
+    updateSplashStatus('Đang kiểm tra dịch vụ nền...');
+    try {
+      await registerServiceWorker();
+    } catch (e) {
+      console.warn('[Bootstrap] SW warning:', e);
+    }
+
+    updateSplashStatus('Đang nạp cơ sở dữ liệu offline...');
+    try {
+      await initFormState();
+    } catch (e) {
+      console.warn('[Bootstrap] initFormState warning:', e);
+    }
+
+    updateSplashStatus('Đang cấu hình kết nối...');
+    try {
+      await setupNetworkListener();
+    } catch (e) {
+      console.warn('[Bootstrap] network warning:', e);
+    }
+
+    // Trigger sync if online
+    if (isOnlineState) {
+      flushPendingSubmissions();
+    }
+
+    updateSplashStatus('Sẵn sàng làm việc!');
+  } catch (err) {
+    console.error('[Bootstrap] Error during bootstrap:', err);
+  } finally {
+    clearTimeout(fallbackTimer);
+    const elapsed = Date.now() - startTime;
+    const remaining = Math.max(0, 900 - elapsed);
+
+    setTimeout(() => {
+      dismissSplashScreen();
+    }, remaining);
   }
-
-  // Render initial page
-  showPage('form');
-
-  updateSplashStatus('Đang kiểm tra dịch vụ nền...');
-  await registerServiceWorker();
-
-  updateSplashStatus('Đang nạp cơ sở dữ liệu offline...');
-  await initFormState();
-
-  updateSplashStatus('Đang cấu hình kết nối...');
-  await setupNetworkListener();
-
-  // Trigger sync if online
-  if (isOnlineState) {
-    flushPendingSubmissions();
-  }
-
-  updateSplashStatus('Sẵn sàng làm việc!');
-
-  // Ensure minimum display duration (~1100ms) for smooth branding experience without flicker
-  const elapsed = Date.now() - startTime;
-  const remaining = Math.max(0, 1100 - elapsed);
-
-  setTimeout(() => {
-    dismissSplashScreen();
-  }, remaining);
 }
 
 bootstrap();

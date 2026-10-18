@@ -9,7 +9,7 @@
 ## 1. GENERAL INFORMATION & DELIVERABLE LINKS
 * **Team Members / Student:**
   1. **Phan Trung Việt** — Student ID: `23ITB` (Email: `vietvt.23itb@vku.udn.vn`) — Role: *Lead Architect / Full-Stack Cross-Platform Mobile & UI Engineering* — Contribution: **100%**
-* **🔗 Live Demo URL:** [https://vku-field-survey.pages.dev](https://vku-field-survey.pages.dev) *(hoặc [https://vku-field-survey.hungabc2206.workers.dev](https://vku-field-survey.hungabc2206.workers.dev))*
+* **🔗 Live Demo URL:** [https://vku-field-survey.vietvt-23itb.workers.dev/](https://vku-field-survey.vietvt-23itb.workers.dev/)
 * **💻 GitHub Repository:** [https://github.com/Penguincodea/vku-field-survey](https://github.com/Penguincodea/vku-field-survey)
 * **📱 Android APK Download:** [GitHub Releases Latest APK](https://github.com/Penguincodea/vku-field-survey/releases)
 * **🎥 Video Demo (Optional):** *Có thể đính kèm video kiểm thử thực tế trên thiết bị vật lý*

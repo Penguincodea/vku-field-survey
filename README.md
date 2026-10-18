@@ -10,8 +10,9 @@
 * **Cơ sở đào tạo:** Trường Đại học Công nghệ Thông tin & Truyền thông Việt - Hàn (VKU) – Đại học Đà Nẵng
 * **Khoa:** Khoa Khoa học Máy tính / Kỹ thuật Máy tính & Điện tử
 * **Học phần:** Phát triển Ứng dụng Đa nền tảng (Cross-Platform Mobile & Web Development)
+* **Sinh viên thực hiện:** Phan Trung Việt — **Mã sinh viên / Lớp:** 23ITB (Email: `vietvt.23itb@vku.udn.vn`)
 * **Mã nguồn GitHub:** [https://github.com/Penguincodea/vku-field-survey](https://github.com/Penguincodea/vku-field-survey)
-* **Live Demo URL:** [https://vku-field-survey.hungabc2206.workers.dev/](https://vku-field-survey.hungabc2206.workers.dev/)
+* **Live Demo URL:** [https://vku-field-survey.vietvt-23itb.workers.dev/](https://vku-field-survey.vietvt-23itb.workers.dev/)
 
 ---
 
@@ -260,8 +261,8 @@ npm run dev
 Truy cập địa chỉ: **`http://localhost:5173`**
 
 ### 6.3. Triển khai Live Demo lên Cloudflare
-* **Đường dẫn Live Demo hoạt động chính thức:** [https://vku-field-survey.hungabc2206.workers.dev/](https://vku-field-survey.hungabc2206.workers.dev/)
-* **Kho lưu trữ GitHub:** [https://github.com/hungbbdzz/vku-field-survey](https://github.com/hungbbdzz/vku-field-survey)
+* **Đường dẫn Live Demo hoạt động chính thức:** [https://vku-field-survey.vietvt-23itb.workers.dev/](https://vku-field-survey.vietvt-23itb.workers.dev/)
+* **Kho lưu trữ GitHub:** [https://github.com/Penguincodea/vku-field-survey](https://github.com/Penguincodea/vku-field-survey)
 * Khi cần đẩy bản cập nhật mới từ máy tính:
   ```bash
   npm run build

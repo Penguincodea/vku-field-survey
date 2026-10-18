@@ -141,10 +141,10 @@ def create_report():
     set_table_borders(info_tbl, color="CBD5E1", sz="6")
     
     info_data = [
-        ("Họ và tên sinh viên:", "Nguyễn Văn Hùng (Sinh viên thực hiện)"),
-        ("Mã số sinh viên / Lớp:", "21IT... / Lớp Kỹ thuật phần mềm VKU"),
+        ("Họ và tên sinh viên:", "Phan Trung Việt (Sinh viên thực hiện)"),
+        ("Mã số sinh viên / Lớp:", "23ITB / Lớp Kỹ thuật phần mềm VKU"),
         ("Học phần / Trọng số:", "Phát triển ứng dụng di động đa nền tảng (Mini-Project 1: 10%)"),
-        ("Live Demo URL:", "https://vku-field-survey.hungabc2206.workers.dev"),
+        ("Live Demo URL:", "https://vku-field-survey.vietvt-23itb.workers.dev"),
         ("GitHub Repository:", "https://github.com/Penguincodea/vku-field-survey")
     ]
     
@@ -311,7 +311,7 @@ def create_report():
         "                                       v\n"
         "+-----------------------------------------------------------------------------+\n"
         "|          CLOUDFLARE SERVERLESS BACKEND (PAGES FUNCTIONS / WORKER)           |\n"
-        "|  - Endpoint tiếp nhận: https://vku-field-survey.hungabc2206.workers.dev    |\n"
+        "|  - Endpoint tiếp nhận: https://vku-field-survey.vietvt-23itb.workers.dev   |\n"
         "|  - Xác thực payload JSON / Multipart FormData, phản hồi biên nhận 200 OK   |\n"
         "+-----------------------------------------------------------------------------+"
     )
@@ -447,7 +447,7 @@ def create_report():
     # Output file
     output_path = os.path.join(os.getcwd(), "Bao_Cao_Mini_Project_1_VKU_Field_Survey.docx")
     doc.save(output_path)
-    print(f"REPORT_GENERATED_SUCCESSFULLY: {output_path}")
+    print("REPORT_GENERATED_SUCCESSFULLY")
 
 if __name__ == "__main__":
     create_report()
